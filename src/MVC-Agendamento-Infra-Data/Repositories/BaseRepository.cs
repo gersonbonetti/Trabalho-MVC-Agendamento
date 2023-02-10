@@ -1,4 +1,5 @@
 ﻿using MVC_Agendamento_Domain.IRepositories;
+using MVC_Agendamento_Infra_Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,29 +10,39 @@ namespace MVC_Agendamento_Infra_Data.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        public IQueryable<T> FindAll()
+        private readonly SQLServerContext _context;
+
+        public BaseRepository(SQLServerContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<T> FindById(int id)
+        public IQueryable<T> FindAll()
         {
-            throw new NotImplementedException();
+            return _context.Set<T>();
+        }
+
+        public async Task<T> FindById(int id)
+        {
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public Task<int> Save(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Add(entity);
+            return _context.SaveChangesAsync();
         }
 
         public Task<int> Update(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Update(entity);
+            return _context.SaveChangesAsync();
         }
 
         public Task<int> Delete(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(entity);
+            return _context.SaveChangesAsync();
         }
     }
 }
