@@ -11,8 +11,4 @@
     <ProjectReference Include="..\MVC-Agendamento-Domain\MVC-Agendamento-Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SQLServerServices\" />
-  </ItemGroup>
-
 </Project>

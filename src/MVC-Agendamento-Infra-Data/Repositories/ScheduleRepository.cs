@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Infra_Data.Repositories
 {
-    public class AgendaRepository : BaseRepository<Agenda>, IAgendaRepository
+    public class ScheduleRepository : BaseRepository<Agenda>, IScheduleRepository
     {
         private readonly SQLServerContext _context;
 
-        public AgendaRepository(SQLServerContext context) : base(context) 
+        public ScheduleRepository(SQLServerContext context) : base(context) 
         {
         }
     }

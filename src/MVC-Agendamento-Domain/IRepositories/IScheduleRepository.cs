@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Domain.IRepositories
 {
-    public interface IAgendaRepository : IBaseRepository<Agenda>
+    public interface IScheduleRepository : IBaseRepository<Agenda>
     {
     }
 }

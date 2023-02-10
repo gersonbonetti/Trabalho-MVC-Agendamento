@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Application_Service.SQLServerServices
 {
-    public class AgendaService : IAgendaService
+    public class ScheduleService : IScheduleService
     {
-        private readonly IAgendaRepository _agendaRepository;
+        private readonly IScheduleRepository _scheduleRepository;
 
-        public AgendaService(IAgendaRepository agendaRepository)
+        public ScheduleService(IScheduleRepository agendaRepository)
         {
-            _agendaRepository = agendaRepository;
+            _scheduleRepository = agendaRepository;
         }
 
         public List<AgendaDTO> FindAll()
@@ -30,18 +30,18 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
 
         public Task<int> Save(AgendaDTO entityDTO)
         {
-            return _agendaRepository.Save(entityDTO.mapToEntity());
+            return _scheduleRepository.Save(entityDTO.mapToEntity());
         }
 
         public Task<int> Update(AgendaDTO entityDTO)
         {
-            return _agendaRepository.Update(entityDTO.mapToEntity());
+            return _scheduleRepository.Update(entityDTO.mapToEntity());
         }
 
         public async Task<int> Delete(int id)
         {
-            var entity = await _agendaRepository.FindById(id);
-            return await _agendaRepository.Delete(entity);
+            var entity = await _scheduleRepository.FindById(id);
+            return await _scheduleRepository.Delete(entity);
         }
     }
 }

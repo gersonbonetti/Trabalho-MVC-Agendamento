@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Domain.IServices
 {
-    public interface IAgendaService : IBaseService<AgendaDTO>
+    public interface IScheduleService : IBaseService<AgendaDTO>
     {
     }
 }
