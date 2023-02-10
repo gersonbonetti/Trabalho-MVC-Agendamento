@@ -15,7 +15,6 @@ namespace MVC_Agendamento_Domain.DTO
         public int medicoId { get; set; }
         public bool consultaConfirmada { get; set; }
         public EnumStatus status { get; set; }
-        public string observacoes { get; set; }
 
         public virtual string? paciente { get; set; }  //Será alterado para a entidade correta
         public virtual string? medico { get; set; }
@@ -29,7 +28,6 @@ namespace MVC_Agendamento_Domain.DTO
                 MedicoId = this.medicoId,
                 ConsultaConfirmada = this.consultaConfirmada,
                 Status = this.status,
-                Observacoes = this.observacoes
             };
         }
         public AgendaDTO mapToDTO(Agenda agenda)
@@ -41,7 +39,6 @@ namespace MVC_Agendamento_Domain.DTO
                 medicoId = agenda.MedicoId,
                 consultaConfirmada = agenda.ConsultaConfirmada,
                 status = agenda.Status,
-                observacoes = agenda.Observacoes
             };
         }
     }
