@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MVC_Agendamento_Web.Controllers
 {
-	public class AgendaController : Controller
+	public class ScheduleController : Controller
 	{
 		public ActionResult Index()
 		{
@@ -39,7 +39,6 @@ namespace MVC_Agendamento_Web.Controllers
 			return View();
 		}
 
-		// POST: AgendaController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(int id, IFormCollection collection)

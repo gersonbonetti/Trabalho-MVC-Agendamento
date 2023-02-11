@@ -9,10 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MVC-Agendamento-Domain\MVC-Agendamento-Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SQLServerServices\" />
+    <ProjectReference Include="..\MVC-Agendamento-Infra-Data\MVC-Agendamento-Infra-Data.csproj" />
   </ItemGroup>
 
 </Project>
