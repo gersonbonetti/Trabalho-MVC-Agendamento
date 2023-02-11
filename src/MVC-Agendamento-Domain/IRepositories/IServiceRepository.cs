@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Domain.IRepositories
 {
-    public interface IAtendimentoRepository //: IBaseRepository<Agendamento>
+    public interface IServiceRepository //: IBaseRepository<Agendamento>
     {
     }
 }
