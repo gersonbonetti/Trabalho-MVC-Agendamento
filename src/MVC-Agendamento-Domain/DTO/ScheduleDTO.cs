@@ -29,7 +29,9 @@ namespace MVC_Agendamento_Domain.DTO
 		[DisplayName("Status")]
 		public EnumStatus status { get; set; }
 
-		public virtual string? patient { get; set; }  //Será alterado para a entidade correta
+		
+
+        public virtual string? patient { get; set; }  //Será alterado para a entidade correta
 		public virtual string? doctor { get; set; }
 
 		public Schedule mapToEntity()
