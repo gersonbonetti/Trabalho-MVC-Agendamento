@@ -1,13 +1,14 @@
-﻿using MVC_Agendamento_Domain.DTO;
-using MVC_Agendamento_Domain.IRepositories;
-using MVC_Agendamento_Domain.IServices;
+﻿using MVC_Agendamento_Domain.Contract.Repositories;
+using MVC_Agendamento_Domain.Contracts.Services;
+using MVC_Agendamento_Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Agendamento_Application_Service.SQLServerServices {
+namespace MVC_Agendamento_Application_Service.SQLServerServices
+{
     public class ServiceService : IServiceService {
 
         private readonly IServiceRepository _repository;
@@ -25,21 +26,29 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices {
             return _repository.FindAll()
                               .Select(c => new ServiceDTO() {
                                   id = c.Id,
-                                  idSchedule= c.IdSchedule,
-                                  idPatient= c.IdPatient,
-                                  idDoctor= c.IdDoctor,
+                                  idSchedule = c.IdSchedule,
+                                  idPatient = c.IdPatient,
+                                  idDoctor = c.IdDoctor,
                                   patient = c.Patient,
-                                  doctor= c.Doctor,
+                                  doctor = c.Doctor,
                                   serviceNumbe = c.ServiceNumbe,
                                   status = c.Status,
-                                  evaluation =  c.Evaluation,
-                                  medicalRecord= c.MedicalRecord,
+                                  evaluation = c.Evaluation,
+                                  medicalRecord = c.MedicalRecord,
                               }).ToList();
         }
 
         public async Task<ServiceDTO> FindById(int id) {
             var dto = new ServiceDTO();
             return dto.mapToDTO(await _repository.FindById(id));
+        }
+
+        public List<ServiceDTO> GetAll() {
+            throw new NotImplementedException(); //To pensando em criar um novo  IBaseService
+        }
+
+        public Task<ServiceDTO> GetById(int id) {
+            throw new NotImplementedException(); //To pensando em criar um novo  IBaseService
         }
 
         public Task<int> Save(ServiceDTO dto) {

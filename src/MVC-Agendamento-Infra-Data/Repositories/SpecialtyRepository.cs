@@ -8,15 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Infra_Data.Repositories {
-    public class ServiceRepository : BaseRepository<Service>, IServiceRepository {
-
-
+    public class SpecialtyRepository : BaseRepository<Specialty>, ISpecialtyRepository
+    {
         private readonly SQLServerContext _context;
-
-        public ServiceRepository(SQLServerContext context) : base(context) {
-            _context = context;
+        public SpecialtyRepository(SQLServerContext context) : base(context) {
+            this._context = context;
         }
-
-
     }
 }
