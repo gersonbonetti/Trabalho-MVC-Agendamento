@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCAgendamentoInfraData.Migrations
 {
     [DbContext(typeof(SQLServerContext))]
-    [Migration("20230212164045_Agenda")]
+    [Migration("20230212174726_Agenda")]
     partial class Agenda
     {
         /// <inheritdoc />
