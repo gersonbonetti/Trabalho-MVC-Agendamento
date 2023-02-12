@@ -13,6 +13,10 @@ namespace MVC_Agendamento_Infra_Data.Context {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
+            modelBuilder.Entity<Service>()
+            .HasNoKey();
+            modelBuilder.Entity<Schedule>()
+            .HasNoKey();
 
             // Mapeamento de Relacionamento
             modelBuilder.Entity<Service>()
@@ -35,6 +39,21 @@ namespace MVC_Agendamento_Infra_Data.Context {
                 .WithMany(patient => patient.Schedule)
                 .HasForeignKey(patient => patient.PatientId);
 
+            modelBuilder.Entity<Service>()
+                .HasOne(service => service.Status)
+                .WithMany(status => status.Service)
+                .HasForeignKey(status => status.StatusId);
+
+
+            // Seed
+            modelBuilder.Entity<Condition>()
+            .HasData(
+            new { Id = 1, Name = "In attendance" },
+            new { Id = 2, Name = "Waiting confirmation" },
+            new { Id = 3, Name = "Marked" },
+            new { Id = 4, Name = "Answered" },
+            new { Id = 5, Name = "Filed" }
+            );
 
             // Seed
             modelBuilder.Entity<Condition>()
@@ -82,7 +101,7 @@ namespace MVC_Agendamento_Infra_Data.Context {
                 new { Id = 3, PersonId = 6, SpecialtyId = 2, CNPJ = "89.466.123/0001-26", CRM = "CRM/RS 123147" }
                 );
 
-
+           
             base.OnModelCreating(modelBuilder);
 
 

@@ -35,7 +35,7 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
 								  doctorId = c.DoctorId,
 								  date = c.Date,
 								  confirmedQuery = c.ConfirmedQuery,
-								  status = c.Status,
+								  statusId = c.StatusId,
 							  }).ToList();
 		}
 

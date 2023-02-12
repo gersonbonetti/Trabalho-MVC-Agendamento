@@ -11,12 +11,16 @@ namespace MVC_Agendamento_Domain.Enums
     {
         [Description("Em atendimento")]
         EmAtendimento = 1,
+
         [Description("Aguardando confirmação")]
         AguardandoConfirmação = 2,
+
         [Description("Marcado")]
         Marcado = 3,
+
         [Description("Atendido")]
         Atendido = 4,
+
         [Description("Arquivado")]
         Arquivado = 5
     }
