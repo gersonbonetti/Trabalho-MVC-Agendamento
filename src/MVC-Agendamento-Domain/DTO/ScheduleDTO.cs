@@ -1,5 +1,5 @@
 ﻿using MVC_Agendamento_Domain.Entities;
-using MVC_Agendamento_Domain.Utils.Enums;
+using MVC_Agendamento_Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Agendamento_Domain.DTO
-{
+namespace MVC_Agendamento_Domain.DTO {
     public class ScheduleDTO
     {
 		[DisplayName("Id")]

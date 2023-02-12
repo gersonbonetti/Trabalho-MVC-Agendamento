@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Agendamento_Domain.Utils.Enums
+namespace MVC_Agendamento_Domain.Enums
 {
     public enum EnumStatus
     {
