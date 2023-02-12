@@ -44,6 +44,11 @@ namespace MVC_Agendamento_Infra_Data.Context {
                 .WithMany(patient => patient.Schedule)
                 .HasForeignKey(patient => patient.PatientId);
 
+            modelBuilder.Entity<Schedule>()
+               .HasOne(service => service.Status)
+                .WithMany(status => status.Schedule)
+                .HasForeignKey(status => status.StatusId);
+
 
 
             // Seed
