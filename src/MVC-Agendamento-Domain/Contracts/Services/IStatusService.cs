@@ -6,6 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Domain.Contracts.Services {
-    public interface IConditionService : IBaseService<ConditionDTO> {
+    public interface IStatusService : IBaseService<StatusDTO> {
     }
 }

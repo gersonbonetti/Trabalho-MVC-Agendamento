@@ -4,7 +4,6 @@ using MVC_Agendamento_Domain.Contract.Repositories;
 using MVC_Agendamento_Domain.Contracts.Services;
 using MVC_Agendamento_Infra_Data.Context;
 using MVC_Agendamento_Infra_Data.Repositories;
-using MVC_Agendamento_Infra_Data.Repositoriess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +17,10 @@ builder.Services.AddDbContext<SQLServerContext>
 // ### Dependency Injection
 // # Repositories
 
+builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 //builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 //builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 //builder.Services.AddScoped<IPersonRepository, PersonRepository>();
-builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 //builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
 //builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 //builder.Services.AddScoped<IUserRepository, UserRepository>();

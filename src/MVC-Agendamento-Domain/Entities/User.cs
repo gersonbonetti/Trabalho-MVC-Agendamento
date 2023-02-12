@@ -1,5 +1,4 @@
-﻿using MVC_Agendamento_Domain.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +13,7 @@ namespace MVC_Agendamento_Domain.Entities {
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public UserTypeEnum? UserType { get; set; }
+
+        //public UserTypeEnum? UserType { get; set; }
     }
 }

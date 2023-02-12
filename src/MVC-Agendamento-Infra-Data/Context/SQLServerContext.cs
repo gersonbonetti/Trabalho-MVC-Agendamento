@@ -16,7 +16,7 @@ namespace MVC_Agendamento_Infra_Data.Context {
 
             // Mapeamento de Relacionamento
             modelBuilder.Entity<Service>()
-                .HasOne( service => service.Doctor)
+                .HasOne(service => service.Doctor)
                 .WithMany(doctor => doctor.Service)
                 .HasForeignKey(doctor => doctor.DoctorId);
 
@@ -24,6 +24,11 @@ namespace MVC_Agendamento_Infra_Data.Context {
                 .HasOne(service => service.Patient)
                 .WithMany(patient => patient.Service)
                 .HasForeignKey(patient => patient.PatientId);
+
+            modelBuilder.Entity<Service>()
+                .HasOne(service => service.Status)
+                .WithMany(status => status.Service)
+                .HasForeignKey(status => status.StatusId);
 
             modelBuilder.Entity<Schedule>()
                 .HasOne(service => service.Doctor)
@@ -35,16 +40,22 @@ namespace MVC_Agendamento_Infra_Data.Context {
                 .WithMany(patient => patient.Schedule)
                 .HasForeignKey(patient => patient.PatientId);
 
+            modelBuilder.Entity<Schedule>()
+                .HasOne(schedule => schedule.Status)
+                .WithMany(status => status.Schedule)
+                .HasForeignKey(status => status.StatusId);
+
 
             // Seed
-            modelBuilder.Entity<Condition>()
+            modelBuilder.Entity<Status>()
             .HasData(
-            new { Id = 1, Name = "Critical" },
-            new { Id = 2, Name = "Serious" },
-            new { Id = 3, Name = "Fair" },
-            new { Id = 4, Name = "Good" },
-            new { Id = 5, Name = "Undetermined" }
+            new { Id = 1, Name = "In attendance" },
+            new { Id = 2, Name = "Waiting confirmation" },
+            new { Id = 3, Name = "Marked" },
+            new { Id = 4, Name = "Answered" },
+            new { Id = 5, Name = "Filed" }
             );
+
 
             // Seed
             modelBuilder.Entity<Specialty>()
@@ -70,9 +81,9 @@ namespace MVC_Agendamento_Infra_Data.Context {
 
             modelBuilder.Entity<Patient>()
                 .HasData(
-                new { Id = 1, PersonId = 1, ConditionId = 3 },
-                new { Id = 2, PersonId = 2, ConditionId = 3 },
-                new { Id = 3, PersonId = 3, ConditionId = 1 }
+                new { Id = 1, PersonId = 1, },
+                new { Id = 2, PersonId = 2, },
+                new { Id = 3, PersonId = 3, }
                 );
 
             modelBuilder.Entity<Doctor>()
@@ -89,7 +100,6 @@ namespace MVC_Agendamento_Infra_Data.Context {
         }
 
         public SQLServerContext() : base() { }
-        public DbSet<Condition> Conditions { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Patient> Patients { get; set; }

@@ -18,5 +18,9 @@ namespace MVC_Agendamento_Domain.Entities {
 
         public virtual ICollection<Service>? Service { get; set; }
         public virtual ICollection<Schedule>? Schedule { get; set; }
+
+        public bool HasNoKey() {
+            throw new NotImplementedException();
+        }
     }
 }

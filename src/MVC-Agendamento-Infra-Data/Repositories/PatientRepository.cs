@@ -13,6 +13,7 @@ namespace MVC_Agendamento_Infra_Data.Repositories {
         public PatientRepository(SQLServerContext context) : base(context)
         {
             this._context = context;
+
         }
     }
 }
