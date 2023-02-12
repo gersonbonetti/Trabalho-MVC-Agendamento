@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MVC_Agendamento_Domain.DTO;
 using MVC_Agendamento_Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,29 @@ namespace MVC_Agendamento_Infra_Data.Context {
         public SQLServerContext(DbContextOptions<SQLServerContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+
+
+            // Mapeamento de Relacionamento
+            modelBuilder.Entity<Service>()
+                .HasOne( service => service.Doctor)
+                .WithMany(doctor => doctor.Service)
+                .HasForeignKey(doctor => doctor.DoctorId);
+
+            modelBuilder.Entity<Service>()
+                .HasOne(service => service.Patient)
+                .WithMany(patient => patient.Service)
+                .HasForeignKey(patient => patient.PatientId);
+
+            modelBuilder.Entity<Schedule>()
+                .HasOne(service => service.Doctor)
+                .WithMany(doctor => doctor.Schedule)
+                .HasForeignKey(doctor => doctor.DoctorId);
+
+            modelBuilder.Entity<Schedule>()
+                .HasOne(service => service.Patient)
+                .WithMany(patient => patient.Schedule)
+                .HasForeignKey(patient => patient.PatientId);
+
 
             // Seed
             modelBuilder.Entity<Condition>()
@@ -57,6 +81,11 @@ namespace MVC_Agendamento_Infra_Data.Context {
                 new { Id = 2, PersonId = 5, SpecialtyId = 1, CNPJ = "56.741.963/0001-42", CRM = "CRM/SC 456983" },
                 new { Id = 3, PersonId = 6, SpecialtyId = 2, CNPJ = "89.466.123/0001-26", CRM = "CRM/RS 123147" }
                 );
+
+
+            base.OnModelCreating(modelBuilder);
+
+
         }
 
         public SQLServerContext() : base() { }

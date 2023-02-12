@@ -12,5 +12,10 @@ namespace MVC_Agendamento_Domain.Entities {
         public virtual Condition? ConditionList { get; set; }
         public int PersonId { get; set; }
         public virtual Person? Person { get; set; }
+
+        public ICollection<Service>? Service { get; set; }
+        public ICollection<Schedule>? Schedule { get; set; }
+
+
     }
 }

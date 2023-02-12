@@ -14,13 +14,13 @@ namespace MVC_Agendamento_Domain.DTO {
         public int id { get; set; }
 
         [DisplayName("Id Agenda")]
-        public int idSchedule { get; set; }
+        public int scheduleId { get; set; }
 
         [DisplayName("Id Paciente")]
-        public int idPatient { get; set; }
+        public int patientId { get; set; }
 
         [DisplayName("Id Medico")]
-        public int idDoctor { get; set; }
+        public int doctorId { get; set; }
 
         [DisplayName("Paciente")]
         public virtual Patient? patient { get; set; }
@@ -46,9 +46,9 @@ namespace MVC_Agendamento_Domain.DTO {
         public Service mapToEntity() {
             return new Service {
                 Id = id,
-                IdSchedule = idSchedule,
-                IdPatient = idPatient,
-                IdDoctor = idDoctor,
+                ScheduleId = scheduleId,
+                PatientId = patientId,
+                DoctorId = doctorId,
                 Patient = patient,
                 Doctor = doctor,
                 ServiceNumbe = serviceNumbe,
@@ -61,9 +61,9 @@ namespace MVC_Agendamento_Domain.DTO {
         }
         public ServiceDTO mapToDTO(Service service) {
             return new ServiceDTO {
-                idSchedule = service.IdSchedule,
-                idPatient = service.IdPatient,
-                idDoctor = service.IdDoctor,
+                scheduleId = service.ScheduleId,
+                patientId = service.PatientId,
+                doctorId = service.DoctorId,
                 patient = service.Patient,
                 doctor = service.Doctor,
                 serviceNumbe = service.ServiceNumbe,

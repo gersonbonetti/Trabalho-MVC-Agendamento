@@ -13,6 +13,10 @@ namespace MVC_Agendamento_Domain.Entities {
         public string CNPJ { get; set; }
         public string CRM { get; set; }
         public int PersonId { get; set; }
-        public virtual Person? Person { get; set; }
+
+        //public virtual Person? Person { get; set; }
+
+        public virtual ICollection<Service>? Service { get; set; }
+        public virtual ICollection<Schedule>? Schedule { get; set; }
     }
 }
