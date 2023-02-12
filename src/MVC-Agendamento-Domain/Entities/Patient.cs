@@ -13,7 +13,5 @@ namespace MVC_Agendamento_Domain.Entities {
 
         public ICollection<Service>? Service { get; set; }
         public ICollection<Schedule>? Schedule { get; set; }
-
-
     }
 }

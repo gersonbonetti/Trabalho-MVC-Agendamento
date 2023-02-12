@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MVCAgendamentoInfraData.Migrations
 {
     /// <inheritdoc />
-    public partial class Agenda : Migration
+    public partial class Updatemydatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

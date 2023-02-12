@@ -23,7 +23,7 @@ namespace MVC_Agendamento_Domain.DTO {
                 Name = name,
             };
         }
-        public SpecialtyDTO maptoDTO(Specialty specialty)
+        public SpecialtyDTO mapToDTO(Specialty specialty)
         {
             return new SpecialtyDTO
             {
