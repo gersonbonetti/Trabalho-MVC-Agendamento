@@ -1,5 +1,5 @@
 ﻿using MVC_Agendamento_Domain.Entities;
-using MVC_Agendamento_Domain.Utils.Enums;
+using MVC_Agendamento_Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,10 +23,10 @@ namespace MVC_Agendamento_Domain.DTO {
         public int idDoctor { get; set; }
 
         [DisplayName("Paciente")]
-        public virtual string? patient { get; set; }
+        public virtual Patient? patient { get; set; }
 
         [DisplayName("Medico")]
-        public virtual string? doctor { get; set; }
+        public virtual Doctor? doctor { get; set; }
 
         [DisplayName("Numero do Atendimento")]
         public int serviceNumbe { get; set; }

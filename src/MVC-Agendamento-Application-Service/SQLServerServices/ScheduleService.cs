@@ -1,7 +1,7 @@
-﻿using MVC_Agendamento_Domain.DTO;
+﻿using MVC_Agendamento_Domain.Contract.Repositories;
+using MVC_Agendamento_Domain.Contracts.Services;
+using MVC_Agendamento_Domain.DTO;
 using MVC_Agendamento_Domain.Entities;
-using MVC_Agendamento_Domain.IRepositories;
-using MVC_Agendamento_Domain.IServices;
 using MVC_Agendamento_Infra_Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Application_Service.SQLServerServices
 {
-	public class ScheduleService : IScheduleService
-	{
+	public class ScheduleService : IScheduleService {
 		private readonly IScheduleRepository _repository;
 
 		public ScheduleService(IScheduleRepository repository)
@@ -46,7 +45,15 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
 			return dto.mapToDTO(await _repository.FindById(id));
 		}
 
-		public Task<int> Save(ScheduleDTO dto)
+        public List<ScheduleDTO> GetAll() {
+            throw new NotImplementedException(); //To pensando em criar um novo  IBaseService
+        }
+
+        public Task<ScheduleDTO> GetById(int id) {
+            throw new NotImplementedException(); //To pensando em criar um novo  IBaseService
+        }
+
+        public Task<int> Save(ScheduleDTO dto)
 		{
 			if (dto.id > 0)
 			{
