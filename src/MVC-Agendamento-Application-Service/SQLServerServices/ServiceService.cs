@@ -26,9 +26,9 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
             return _repository.FindAll()
                               .Select(c => new ServiceDTO() {
                                   id = c.Id,
-                                  idSchedule = c.IdSchedule,
-                                  idPatient = c.IdPatient,
-                                  idDoctor = c.IdDoctor,
+                                  scheduleId = c.ScheduleId,
+                                  patientId = c.PatientId,
+                                  doctorId = c.DoctorId,
                                   patient = c.Patient,
                                   doctor = c.Doctor,
                                   serviceNumbe = c.ServiceNumbe,

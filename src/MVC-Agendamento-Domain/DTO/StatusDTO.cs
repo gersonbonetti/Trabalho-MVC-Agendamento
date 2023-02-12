@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace MVC_Agendamento_Domain.DTO {
-    public class ConditionDTO
-    {
+    public class StatusDTO {
+
         [Display(Name = "Id")]
         public int id { get; set; }
         [Display(Name = "Name")]
         public string name { get; set; }
-        public virtual ICollection<PatientDTO>? patientList { get; set; }
-        public Condition mapToEntity()
-        {
-            return new Condition
-            {
+
+         public ICollection<Service>? Service { get; set; }
+
+
+        public Status mapToEntity() {
+            return new Status {
                 Id = id,
                 Name = name,
             };
         }
-        public ConditionDTO maptoDTO(Condition condition)
-        {
-            return new ConditionDTO
-            {
-                id = condition.Id,
-                name = condition.Name,
+        public StatusDTO mapToDTO(Status status) {
+            return new StatusDTO {
+                id = status.Id,
+                name = status.Name,
             };
         }
     }
 }
+

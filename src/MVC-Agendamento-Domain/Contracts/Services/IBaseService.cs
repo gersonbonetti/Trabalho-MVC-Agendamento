@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Agendamento_Domain.Contracts.Services
-{
+namespace MVC_Agendamento_Domain.Contracts.Services {
     public interface IBaseService<T> where T : class
     {
         List<T> GetAll();

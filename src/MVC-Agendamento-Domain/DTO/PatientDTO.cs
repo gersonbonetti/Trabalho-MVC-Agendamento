@@ -27,7 +27,6 @@ namespace MVC_Agendamento_Domain.DTO {
             return new Patient()
             {
                 Id = id,
-                ConditionId = conditionId,
                 PersonId = personId
             };
         }
@@ -36,7 +35,6 @@ namespace MVC_Agendamento_Domain.DTO {
             return new PatientDTO()
             {
                 id = patient.Id,
-                conditionId = patient.ConditionId,
                 personId = patient.PersonId
             };
         }

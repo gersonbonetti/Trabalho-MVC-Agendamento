@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MVC_Agendamento_Domain.DTO;
 using MVC_Agendamento_Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,49 @@ namespace MVC_Agendamento_Infra_Data.Context {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
+            modelBuilder.Entity<Service>()
+            .HasNoKey();
+            modelBuilder.Entity<Schedule>()
+            .HasNoKey();
+
+            // Mapeamento de Relacionamento
+            modelBuilder.Entity<Service>()
+                .HasOne(service => service.Doctor)
+                .WithMany(doctor => doctor.Service)
+                .HasForeignKey(doctor => doctor.DoctorId);
+
+            modelBuilder.Entity<Service>()
+                .HasOne(service => service.Patient)
+                .WithMany(patient => patient.Service)
+                .HasForeignKey(patient => patient.PatientId);
+
+            modelBuilder.Entity<Service>()
+                .HasOne(service => service.Status)
+                .WithMany(status => status.Service)
+                .HasForeignKey(status => status.StatusId);
+
+            modelBuilder.Entity<Schedule>()
+                .HasOne(service => service.Doctor)
+                .WithMany(doctor => doctor.Schedule)
+                .HasForeignKey(doctor => doctor.DoctorId);
+
+            modelBuilder.Entity<Schedule>()
+                .HasOne(service => service.Patient)
+                .WithMany(patient => patient.Schedule)
+                .HasForeignKey(patient => patient.PatientId);
+
+
+
             // Seed
-            modelBuilder.Entity<Condition>()
+            modelBuilder.Entity<Status>()
             .HasData(
-            new { Id = 1, Name = "Critical" },
-            new { Id = 2, Name = "Serious" },
-            new { Id = 3, Name = "Fair" },
-            new { Id = 4, Name = "Good" },
-            new { Id = 5, Name = "Undetermined" }
+            new { Id = 1, Name = "In attendance" },
+            new { Id = 2, Name = "Waiting confirmation" },
+            new { Id = 3, Name = "Marked" },
+            new { Id = 4, Name = "Answered" },
+            new { Id = 5, Name = "Filed" }
             );
+
 
             // Seed
             modelBuilder.Entity<Specialty>()
@@ -46,9 +81,9 @@ namespace MVC_Agendamento_Infra_Data.Context {
 
             modelBuilder.Entity<Patient>()
                 .HasData(
-                new { Id = 1, PersonId = 1, ConditionId = 3 },
-                new { Id = 2, PersonId = 2, ConditionId = 3 },
-                new { Id = 3, PersonId = 3, ConditionId = 1 }
+                new { Id = 1, PersonId = 1, },
+                new { Id = 2, PersonId = 2, },
+                new { Id = 3, PersonId = 3, }
                 );
 
             modelBuilder.Entity<Doctor>()
@@ -57,10 +92,14 @@ namespace MVC_Agendamento_Infra_Data.Context {
                 new { Id = 2, PersonId = 5, SpecialtyId = 1, CNPJ = "56.741.963/0001-42", CRM = "CRM/SC 456983" },
                 new { Id = 3, PersonId = 6, SpecialtyId = 2, CNPJ = "89.466.123/0001-26", CRM = "CRM/RS 123147" }
                 );
+
+           
+            base.OnModelCreating(modelBuilder);
+
+
         }
 
         public SQLServerContext() : base() { }
-        public DbSet<Condition> Conditions { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Patient> Patients { get; set; }

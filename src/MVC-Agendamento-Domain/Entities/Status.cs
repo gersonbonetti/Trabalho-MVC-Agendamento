@@ -5,10 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Domain.Entities {
-    public class Condition
-    {
+    public class Status {
+
         public int Id { get; set; }
+
         public string Name { get; set; }
-        public virtual ICollection<Patient>? PatientList { get; set; }
+
+        public ICollection<Service>? Service { get; set; }
+
+        public ICollection<Schedule>? Schedule { get; set; }
+
     }
 }
