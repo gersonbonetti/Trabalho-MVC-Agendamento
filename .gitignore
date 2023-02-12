@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/MVC-Agendamento-Domain/DTO/ScheduleDTO.cs
+/src/MVC-Agendamento-Domain/DTO/ServiceDTO.cs
