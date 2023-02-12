@@ -13,10 +13,7 @@ namespace MVC_Agendamento_Infra_Data.Context {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
-            modelBuilder.Entity<Service>()
-            .HasNoKey();
-            modelBuilder.Entity<Schedule>()
-            .HasNoKey();
+         
 
             // Mapeamento de Relacionamento
             modelBuilder.Entity<Service>()

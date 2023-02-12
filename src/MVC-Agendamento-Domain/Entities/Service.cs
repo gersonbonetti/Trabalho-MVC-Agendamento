@@ -10,7 +10,6 @@ using System.Xml.Linq;
 namespace MVC_Agendamento_Domain.Entities {
     public class Service {
 
-        [Key]
         public int Id { get; set; }
         public int ScheduleId { get; set; }
         public int PatientId { get; set; }
