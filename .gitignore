@@ -358,8 +358,3 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-
-# Fody - auto-generated XML schema
-FodyWeavers.xsd
-/src/MVC-Agendamento-Domain/DTO/ScheduleDTO.cs
-/src/MVC-Agendamento-Domain/DTO/ServiceDTO.cs
