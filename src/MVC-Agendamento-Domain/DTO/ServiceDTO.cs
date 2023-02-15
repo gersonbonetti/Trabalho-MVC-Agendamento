@@ -37,7 +37,7 @@ namespace MVC_Agendamento_Domain.DTO
 		public virtual Status? status { get; set; }
 
 		[DisplayName("Numero do Atendimento")]
-		public int serviceNumbe { get; set; }
+		public int serviceNumber { get; set; }
 
 		[DisplayName("Data do Atendimento")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yy HH:mm}")]
@@ -59,7 +59,7 @@ namespace MVC_Agendamento_Domain.DTO
 				StatusId = statusId,
 				Patient = patient,
 				Doctor = doctor,
-				ServiceNumbe = serviceNumbe,
+				ServiceNumber = serviceNumber,
 				Date = date,
 				Status = status,
 				Evaluation = evaluation,
@@ -77,7 +77,7 @@ namespace MVC_Agendamento_Domain.DTO
 				statusId = service.StatusId,
 				patient = service.Patient,
 				doctor = service.Doctor,
-				serviceNumbe = service.ServiceNumbe,
+				serviceNumber = service.ServiceNumber,
 				date = service.Date,
 				status = service.Status,
 				evaluation = service.Evaluation,

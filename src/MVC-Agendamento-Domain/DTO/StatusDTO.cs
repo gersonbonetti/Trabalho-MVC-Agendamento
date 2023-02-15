@@ -15,7 +15,7 @@ namespace MVC_Agendamento_Domain.DTO {
         [Display(Name = "Name")]
         public string name { get; set; }
 
-         public ICollection<Service>? Service { get; set; }
+        public ICollection<Service>? Service { get; set; }
 
 
         public Status mapToEntity() {

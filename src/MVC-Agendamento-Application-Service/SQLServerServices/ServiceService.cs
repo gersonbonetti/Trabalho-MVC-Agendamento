@@ -31,7 +31,7 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
                                   doctorId = c.DoctorId,
                                   patient = c.Patient,
                                   doctor = c.Doctor,
-                                  serviceNumbe = c.ServiceNumbe,
+                                  serviceNumber = c.ServiceNumber,
                                   status = c.Status,
                                   evaluation = c.Evaluation,
                                   medicalRecord = c.MedicalRecord,
