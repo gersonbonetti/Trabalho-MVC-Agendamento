@@ -51,11 +51,11 @@ namespace MVC_Agendamento_Infra_Data.Context {
             // Seed
             modelBuilder.Entity<Status>()
             .HasData(
-            new { Id = 1, Name = "In attendance" },
-            new { Id = 2, Name = "Waiting confirmation" },
-            new { Id = 3, Name = "Marked" },
-            new { Id = 4, Name = "Answered" },
-            new { Id = 5, Name = "Filed" }
+            new { Id = 1, Name = "Em atendimento" },
+            new { Id = 2, Name = "Aguardando confirmação" },
+            new { Id = 3, Name = "Marcada" },
+            new { Id = 4, Name = "Atendido" },
+            new { Id = 5, Name = "Arquivado" }
             );
 
 
