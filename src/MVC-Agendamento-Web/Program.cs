@@ -16,6 +16,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SQLServerContext>
 	(options => options.UseSqlServer("Server=LAPTOP-K24VTQEH\\SQLEXPRESS;Database=Agendamento;User Id=sa;Password=admin;TrustServerCertificate=True;"));
 
+// Lucas: LAPTOP-K24VTQEH\\SQLEXPRESS
+
 // ### Dependency Injection
 // # Repositories
 

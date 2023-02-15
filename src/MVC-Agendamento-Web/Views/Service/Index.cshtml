@@ -13,10 +13,10 @@
                 @Html.DisplayNameFor(model => model.scheduleId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.patientId)
+                @Html.DisplayNameFor(model => model.patient)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.doctorId)
+                @Html.DisplayNameFor(model => model.doctor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.statusId)
@@ -52,13 +52,13 @@
                     @Html.DisplayFor(modelItem => item.scheduleId)
                 </th>
                 <th>
-                    @Html.DisplayFor(modelItem => item.patientId)
+                    @Html.DisplayFor(modelItem => item.patient.Person.Name)
                 </th>
                 <th>
-                    @Html.DisplayFor(modelItem => item.doctorId)
+                    @Html.DisplayFor(modelItem => item.doctor.Person.Name)
                 </th>
                 <th>
-                    @Html.DisplayFor(modelItem => item.statusId)
+                    @Html.DisplayFor(modelItem => item.status.Name)
                 </th>
                 <th>
                     @Html.DisplayFor(modelItem => item.status.Name)
