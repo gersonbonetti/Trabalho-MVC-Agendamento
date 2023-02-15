@@ -16,8 +16,9 @@ builder.Services.AddControllersWithViews();
 
 // Context SQL Server
 builder.Services.AddDbContext<SQLServerContext>
-	(options => options.UseSqlServer("Server=JAILSON-PC\\SQLEXPRESS;Database=Agendamento;User Id=sa;Password=admin; Integrated Security=true; MultipleActiveResultSets=true;TrustServerCertificate=True;"));
+	(options => options.UseSqlServer("Server=PATRICK;Database=Agendamento;User Id=sa;Password=admin; Integrated Security=true; MultipleActiveResultSets=true;TrustServerCertificate=True;"));
 
+//PATRICK
 // ### Dependency Injection
 // # Repositories
 
@@ -29,7 +30,7 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
-r
+
 //builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
