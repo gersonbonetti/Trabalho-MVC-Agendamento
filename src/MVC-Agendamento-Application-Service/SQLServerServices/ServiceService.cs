@@ -1,6 +1,7 @@
 ﻿using MVC_Agendamento_Domain.Contract.Repositories;
 using MVC_Agendamento_Domain.Contracts.Services;
 using MVC_Agendamento_Domain.DTO;
+using MVC_Agendamento_Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,12 +30,33 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
                                   scheduleId = c.ScheduleId,
                                   patientId = c.PatientId,
                                   doctorId = c.DoctorId,
-                                  patient = c.Patient,
-                                  doctor = c.Doctor,
+                                  patient = new Patient()
+                                  {
+                                      Id = c.Patient.Id,
+                                      Person = new Person()
+                                      {
+                                          Id = c.Patient.Person.Id,
+                                          Name = c.Patient.Person.Name
+                                      }
+                                  },
+                                  doctor = new Doctor()
+                                  {
+                                      Id = c.Doctor.Id,
+                                      Person = new Person()
+                                      {
+                                          Id = c.Doctor.Person.Id,
+                                          Name = c.Doctor.Person.Name
+                                      }
+                                  },
                                   serviceNumber = c.ServiceNumber,
-                                  status = c.Status,
+                                  status = new Status()
+                                  {
+                                      Id = c.Status.Id,
+                                      Name = c.Status.Name
+                                  },
                                   evaluation = c.Evaluation,
                                   medicalRecord = c.MedicalRecord,
+                                  date = c.Date
                               }).ToList();
         }
 

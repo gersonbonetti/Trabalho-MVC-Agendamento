@@ -12,25 +12,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
-
 // Context SQL Server
 builder.Services.AddDbContext<SQLServerContext>
-	(options => options.UseSqlServer("Server=PATRICK;Database=Agendamento;User Id=sa;Password=admin; Integrated Security=true; MultipleActiveResultSets=true;TrustServerCertificate=True;"));
+	(options => options.UseSqlServer("Server=LAPTOP-K24VTQEH\\SQLEXPRESS;Database=Agendamento;User Id=sa;Password=admin;TrustServerCertificate=True;"));
 
-//PATRICK
+
+// Lucas: LAPTOP-K24VTQEH\\SQLEXPRESS
+// Patrick: PATRICK
+
 // ### Dependency Injection
 // # Repositories
 
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
-
 //builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
