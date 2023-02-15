@@ -16,7 +16,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SQLServerContext>
 	(options => options.UseSqlServer("Server=LAPTOP-K24VTQEH\\SQLEXPRESS;Database=Agendamento;User Id=sa;Password=admin;TrustServerCertificate=True;"));
 
+
 // Lucas: LAPTOP-K24VTQEH\\SQLEXPRESS
+// Patrick: PATRICK
 
 // ### Dependency Injection
 // # Repositories
@@ -40,6 +42,7 @@ builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
+
 //builder.Services.AddScoped<IUserService, UserService>();
 
 

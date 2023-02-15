@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MVC_Agendamento_Domain.DTO.ScheduleDTO>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Add Category</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patient.Person.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.doctorId)
+            </th>
+            <th>
+                @*!<-- @Html.DisplayNameFor(model => model.doctor.Person.Name)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.confirmedQuery)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.id)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.patientId)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.patient.Person.Name)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.doctorId)
+                </th>
+                <th>
+                    @*@Html.DisplmeFor(model => model.doctor.Person.Name)*@
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.status.Name)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.date)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.confirmedQuery)
+                </th>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a class="btn btn-danger" href="#" onclick="deleteCategory(@item.id)">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        const deleteCategory = (idParam) => {
+            msgModalMessage(`Deseja realmente excluir o registro ${idParam}?`, () => {
+                $.ajax({
+                    url: `@Url.Action("Delete")`,
+                    method: 'POST',
+                    data: {
+                        id: idParam
+                    },
+                    success: (resp) => {
+                        if (resp.code == '200') {
+                            liveToastMessage(`O Registro ${idParam} foi excluído.`, 'Category');
+                            setTimeout(() => { window.location.reload(); }, 4000);
+                        }
+                    }
+                });
+                closeMsgModalMessage();
+            });
+        }
+    </script>
+}
