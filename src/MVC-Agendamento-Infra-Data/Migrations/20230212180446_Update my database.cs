@@ -162,7 +162,7 @@ namespace MVCAgendamentoInfraData.Migrations
                     PatientId = table.Column<int>(type: "int", nullable: false),
                     DoctorId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
-                    ServiceNumbe = table.Column<int>(type: "int", nullable: false),
+                    ServiceNumber = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Evaluation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MedicalRecord = table.Column<int>(type: "int", nullable: false)
