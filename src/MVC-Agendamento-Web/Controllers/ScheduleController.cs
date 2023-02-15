@@ -1,16 +1,23 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using MVC_Agendamento_Domain.Contracts.Services;
+using MVC_Agendamento_Domain.DTO;
 
 namespace MVC_Agendamento_Web.Controllers
 {
 	public class ScheduleController : Controller
 	{
-		public ActionResult Index()
-		{
-			return View();
-		}
+        private readonly IScheduleService _service;
 
-		public ActionResult Details(int id)
+        public ScheduleController(IScheduleService service) {
+            _service = service;
+        }
+        public ActionResult Index() {
+            return View(_service.FindAll());
+        }
+
+        public ActionResult Details(int id)
 		{
 			return View();
 		}

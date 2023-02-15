@@ -40,7 +40,8 @@ namespace MVC_Agendamento_Domain.DTO
 		public int serviceNumbe { get; set; }
 
 		[DisplayName("Data do Atendimento")]
-		public DateTime date { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yy HH:mm}")]
+        public DateTime date { get; set; }
 
 
 		[DisplayName("Avaliação")]
