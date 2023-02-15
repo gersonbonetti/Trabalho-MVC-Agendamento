@@ -15,7 +15,7 @@ namespace MVC_Agendamento_Web.Controllers
 		{
 			_service = service;
 		}
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			return View(_service.FindAll());
 		}
@@ -33,7 +33,7 @@ namespace MVC_Agendamento_Web.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind("id, patientId, doctorId, statusId, date, confirmedQuery")] ScheduleDTO schedule)
+        public async Task<IActionResult> Create([Bind("id, patientId, doctorId, statusId, date, confirmedQuery")] ScheduleDTO schedule)
 		{
 			try
 			{
@@ -62,7 +62,7 @@ namespace MVC_Agendamento_Web.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit(int id, [Bind("id, patientId, doctorId, statusId, date, confirmedQuery")] ScheduleDTO schedule)
+		public async Task<IActionResult> Edit(int id, [Bind("id, patientId, doctorId, statusId, date, confirmedQuery")] ScheduleDTO schedule)
 		{
 			try
 			{
@@ -84,7 +84,7 @@ namespace MVC_Agendamento_Web.Controllers
 			}
 		}
 
-		public ActionResult Delete(int id)
+		public async Task<IActionResult> Delete(int id)
 		{
 
             if (id == null)
