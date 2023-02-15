@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,8 @@ namespace MVC_Agendamento_Domain.DTO
 		public int statusId { get; set; }
 
 		[DisplayName("Data")]
-		public DateTime date { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yy HH:mm}")]
+        public DateTime date { get; set; }
 
 		[DisplayName("Confirmação")]
 		public bool confirmedQuery { get; set; }

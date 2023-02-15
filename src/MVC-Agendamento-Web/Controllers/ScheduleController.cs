@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MVC_Agendamento_Domain.Contracts.Services;
 using MVC_Agendamento_Domain.DTO;
+
 using MVC_Agendamento_Domain.Entities;
 
 namespace MVC_Agendamento_Web.Controllers
 {
 	public class ScheduleController : Controller
 	{
+
 		private readonly IScheduleService _service;
 
 		public ScheduleController(IScheduleService service)
@@ -20,7 +22,8 @@ namespace MVC_Agendamento_Web.Controllers
 			return View(_service.FindAll());
 		}
 
-		public ActionResult Details(int id)
+
+        public ActionResult Details(int id)
 		{
 			return View();
 		}

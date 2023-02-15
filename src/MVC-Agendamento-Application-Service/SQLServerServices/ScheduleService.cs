@@ -1,8 +1,6 @@
 ﻿using MVC_Agendamento_Domain.Contract.Repositories;
 using MVC_Agendamento_Domain.Contracts.Services;
 using MVC_Agendamento_Domain.DTO;
-using MVC_Agendamento_Domain.Entities;
-using MVC_Agendamento_Infra_Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

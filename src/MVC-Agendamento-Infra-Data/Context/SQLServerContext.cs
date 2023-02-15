@@ -11,6 +11,7 @@ namespace MVC_Agendamento_Infra_Data.Context {
     public class SQLServerContext : DbContext {
         public SQLServerContext(DbContextOptions<SQLServerContext> options) : base(options) { }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
          
