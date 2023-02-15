@@ -13,56 +13,38 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
 	public class PersonService : IPersonService
 	{
 
-		private readonly IPersonRepository _repository;
-		public PersonService(IPersonRepository repository)
-		{
-			_repository = repository;
-		}
+        private readonly IPersonRepository _repository;
+        public PersonService(IPersonRepository repository) {
+            this._repository = repository;
+        }
 
-		public async Task<int> Delete(int id)
-		{
-			var entity = await _repository.FindById(id);
-			return await _repository.Delete(entity);
-		}
+        public async Task<int> Delete(int id) {
+            var person = await _repository.GetById(id);
+            return await _repository.Delete(person);
+        }
 
-		public List<PersonDTO> FindAll()
-		{
-			return _repository.FindAll()
-							  .Select(c => new PersonDTO()
-							  {
-								  id = c.Id,
-								  name = c.Name,
-								  age = c.Age,
-								  cpf = c.CPF
-							  }).ToList();
-		}
+        public async Task<List<PersonDTO>> GetAll() {
+            List<PersonDTO> listaDTO = new List<PersonDTO>();
+            foreach (var person in _repository.GetAll()) {
+                var persondto = new PersonDTO();
+                listaDTO.Add(persondto.mapToDTO(person));
+            }
+            return listaDTO;
+        }
 
-		public async Task<PersonDTO> FindById(int id)
-		{
-			var dto = new PersonDTO();
-			return dto.mapToDTO(await _repository.FindById(id));
-		}
+        public async Task<PersonDTO> GetById(int? id) {
+            var person = new PersonDTO();
+            return person.mapToDTO(await _repository.GetById(id));
+        }
 
-		public List<PersonDTO> GetAll()
-		{
-			throw new NotImplementedException(); 
-		}
+        public async Task<int> Save(PersonDTO entity) {
+            if (entity.id > 0) {
+                return await _repository.Update(entity.mapToEntity());
+            }
+            else {
+                return await _repository.Save(entity.mapToEntity());
+            }
 
-		public Task<PersonDTO> GetById(int id)
-		{
-			throw new NotImplementedException(); 
-		}
-
-		public Task<int> Save(PersonDTO dto)
-		{
-			if (dto.id > 0)
-			{
-				return _repository.Update(dto.mapToEntity());
-			}
-			else
-			{
-				return _repository.Save(dto.mapToEntity());
-			}
-		}
-	}
+        }
+    }
 }

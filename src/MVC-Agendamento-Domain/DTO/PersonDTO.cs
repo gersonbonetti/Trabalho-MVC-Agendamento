@@ -1,4 +1,5 @@
 ﻿using MVC_Agendamento_Domain.Entities;
+using Register.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,30 +20,32 @@ namespace MVC_Agendamento_Domain.DTO {
 
         [Display(Name = "Age")]
         [Required(ErrorMessage = "{0} is required")]
-        public string age { get; set; }
+        public DateTime birthDate { get; set; }
 
         [Display(Name = "CPF")]
         [Required(ErrorMessage = "{0} is required")]
         public string cpf { get; set; }
 
-        public Person mapToEntity()
-        {
-            return new Person()
-            {
+        [Display(Name = "Gender")]
+        [Required(ErrorMessage = "{0} is required")]
+        public GenderEnum gender { get; set; }
+
+        public Person mapToEntity() {
+            return new Person() {
                 Id = id,
                 Name = name,
-                Age = age, //Estava com erro no codigo do pessoa do cadrastro
-                CPF = cpf
+                BirthDate = birthDate,
+                CPF = cpf,
+                Gender = gender
             };
         }
-        public PersonDTO mapToDTO(Person person)
-        {
-            return new PersonDTO()
-            {
+        public PersonDTO mapToDTO(Person person) {
+            return new PersonDTO() {
                 id = person.Id,
                 name = person.Name,
-                age = person.Age, //Estava com erro no codigo do pessoa do cadrastro
-                cpf = person.CPF
+                birthDate = person.BirthDate,
+                cpf = person.CPF,
+                gender = person.Gender,
             };
         }
     }

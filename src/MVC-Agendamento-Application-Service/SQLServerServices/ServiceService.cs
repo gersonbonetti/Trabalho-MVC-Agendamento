@@ -51,6 +51,10 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
             throw new NotImplementedException(); //To pensando em criar um novo  IBaseService
         }
 
+        public Task<ServiceDTO> GetById(int? id) {
+            throw new NotImplementedException();
+        }
+
         public Task<int> Save(ServiceDTO dto) {
             if (dto.id > 0) {
                 return _repository.Update(dto.mapToEntity());
@@ -58,6 +62,10 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
             else {
                 return _repository.Save(dto.mapToEntity());
             }
+        }
+
+        Task<List<ServiceDTO>> IBaseService<ServiceDTO>.GetAll() {
+            throw new NotImplementedException();
         }
     }
 }

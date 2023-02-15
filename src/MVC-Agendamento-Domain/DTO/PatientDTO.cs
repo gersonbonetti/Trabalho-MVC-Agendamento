@@ -1,4 +1,5 @@
 ﻿using MVC_Agendamento_Domain.Entities;
+using Register.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,26 +17,32 @@ namespace MVC_Agendamento_Domain.DTO {
 
         [Display(Name = "Condition")]
         [Required(ErrorMessage = "{0} is required")]
-        public int conditionId { get; set; }
+        public int? conditionId { get; set; }
 
         [Display(Name = "PersonId")]
         public int personId { get; set; }
 
+        [Display(Name = "MRNumber")]
+        public int? mrNumber { get; set; }
 
-        public Patient mapToEntity()
-        {
-            return new Patient()
-            {
+        public virtual PersonDTO? person { get; set; }
+        public virtual ConditionDTO? condition { get; set; }
+
+
+        public Patient mapToEntity() {
+            return new Patient() {
                 Id = id,
-                PersonId = personId
+                ConditionId = conditionId,
+                PersonId = personId,
+                MRNumber = mrNumber
             };
         }
-        public PatientDTO mapToDTO(Patient patient)
-        {
-            return new PatientDTO()
-            {
+        public PatientDTO mapToDTO(Patient patient) {
+            return new PatientDTO() {
                 id = patient.Id,
-                personId = patient.PersonId
+                conditionId = patient.ConditionId,
+                personId = patient.PersonId,
+                mrNumber = patient.MRNumber
             };
         }
     }

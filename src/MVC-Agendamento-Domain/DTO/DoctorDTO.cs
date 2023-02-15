@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace MVC_Agendamento_Domain.DTO {
-    public class DoctorDTO
-    {
+    public class DoctorDTO {
         [Display(Name = "Id")]
         [Required(ErrorMessage = "{0} is required")]
         public int id { get; set; }
@@ -29,11 +28,11 @@ namespace MVC_Agendamento_Domain.DTO {
         [Display(Name = "PersonId")]
         public int personId { get; set; }
 
+        public virtual PersonDTO? person { get; set; }
+        public virtual SpecialtyDTO? specialty { get; set; }
 
-        public Doctor mapToEntity()
-        {
-            return new Doctor()
-            {
+        public Doctor mapToEntity() {
+            return new Doctor() {
                 Id = id,
                 SpecialtyId = specialtyId,
                 CNPJ = cnpj,
@@ -42,10 +41,8 @@ namespace MVC_Agendamento_Domain.DTO {
 
             };
         }
-        public DoctorDTO mapToDTO(Doctor doctor)
-        {
-            return new DoctorDTO()
-            {
+        public DoctorDTO mapToDTO(Doctor doctor) {
+            return new DoctorDTO() {
                 id = doctor.Id,
                 specialtyId = doctor.SpecialtyId,
                 cnpj = doctor.CNPJ,

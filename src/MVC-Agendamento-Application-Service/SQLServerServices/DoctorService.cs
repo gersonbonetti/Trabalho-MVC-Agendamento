@@ -12,57 +12,49 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
 {
 	public class DoctorService : IDoctorService
 	{
-		private readonly IDoctorRepository _repository;
-		public DoctorService(IDoctorRepository repository)
-		{
-			_repository = repository;
-		}
+        private readonly IDoctorRepository _repository;
+        private readonly IPersonRepository _personRepository;
+        private readonly ISpecialtyRepository _specialtyRepository;
+        public DoctorService(IDoctorRepository repository, IPersonRepository personRepository, ISpecialtyRepository specialtyRepository) {
+            this._repository = repository;
+            _personRepository = personRepository;
+            _specialtyRepository = specialtyRepository;
+        }
 
-		public async Task<int> Delete(int id)
-		{
-			var entity = await _repository.FindById(id);
-			return await _repository.Delete(entity);
-		}
+        public async Task<int> Delete(int id) {
+            var doctor = await _repository.GetById(id);
+            return await _repository.Delete(doctor);
+        }
 
-		public List<DoctorDTO> FindAll()
-		{
-			return _repository.FindAll()
-							  .Select(c => new DoctorDTO()
-							  {
-								  id = c.Id,
-								  specialtyId = c.SpecialtyId,
-								  cnpj = c.CNPJ,
-								  crm = c.CRM,
-								  personId = c.PersonId
-							  }).ToList();
-		}
+        public async Task<List<DoctorDTO>> GetAll() {
+            List<DoctorDTO> listaDTO = new List<DoctorDTO>();
+            foreach (var doctor in _repository.GetAll()) {
+                var doctordto = new DoctorDTO();
+                var pessoadto = new PersonDTO();
+                var specdto = new SpecialtyDTO();
 
-		public async Task<DoctorDTO> FindById(int id)
-		{
-			var dto = new DoctorDTO();
-			return dto.mapToDTO(await _repository.FindById(id));
-		}
+                var docdto = doctordto.mapToDTO(doctor);
+                docdto.person = pessoadto.mapToDTO(await _personRepository.GetById(doctor.PersonId));
+                docdto.specialty = specdto.maptoDTO(await _specialtyRepository.GetById(doctor.SpecialtyId));
 
-		public List<DoctorDTO> GetAll()
-		{
-			throw new NotImplementedException(); 
-		}
+                listaDTO.Add(docdto);
+            }
+            return listaDTO;
+        }
 
-		public Task<DoctorDTO> GetById(int id)
-		{
-			throw new NotImplementedException(); 
-		}
+        public async Task<DoctorDTO> GetById(int? id) {
+            var doctor = new DoctorDTO();
+            return doctor.mapToDTO(await _repository.GetById(id));
+        }
 
-		public Task<int> Save(DoctorDTO dto)
-		{
-			if (dto.id > 0)
-			{
-				return _repository.Update(dto.mapToEntity());
-			}
-			else
-			{
-				return _repository.Save(dto.mapToEntity());
-			}
-		}
-	}
+        public async Task<int> Save(DoctorDTO entity) {
+            if (entity.id > 0) {
+                return await _repository.Update(entity.mapToEntity());
+            }
+            else {
+                return await _repository.Save(entity.mapToEntity());
+            }
+
+        }
+    }
 }

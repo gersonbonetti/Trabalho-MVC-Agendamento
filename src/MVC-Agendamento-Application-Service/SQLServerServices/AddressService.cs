@@ -55,7 +55,11 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
 			throw new NotImplementedException(); 
 		}
 
-		public Task<int> Save(AddressDTO dto)
+        public Task<AddressDTO> GetById(int? id) {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> Save(AddressDTO dto)
 		{
 			if (dto.id > 0)
 			{
@@ -66,5 +70,9 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices
 				return _repository.Save(dto.mapToEntity());
 			}
 		}
-	}
+
+        Task<List<AddressDTO>> IBaseService<AddressDTO>.GetAll() {
+            throw new NotImplementedException();
+        }
+    }
 }
