@@ -68,26 +68,3 @@
         }
     </tbody>
 </table>
-
-@section Scripts {
-    <script>
-        const deleteCategory = (idParam) => {
-            msgModalMessage(`Deseja realmente excluir o registro ${idParam}?`, () => {
-                $.ajax({
-                    url: `@Url.Action("Delete")`,
-                    method: 'POST',
-                    data: {
-                        id: idParam
-                    },
-                    success: (resp) => {
-                        if (resp.code == '200') {
-                            liveToastMessage(`O Registro ${idParam} foi excluído.`, 'Category');
-                            setTimeout(() => { window.location.reload(); }, 4000);
-                        }
-                    }
-                });
-                closeMsgModalMessage();
-            });
-        }
-    </script>
-}
