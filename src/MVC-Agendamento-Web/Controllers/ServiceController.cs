@@ -1,60 +1,77 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVC_Agendamento_Domain.Contracts.Services;
+using MVC_Agendamento_Domain.DTO;
 
-namespace MVC_Agendamento_Web.Controllers {
-    public class ServiceController : Controller {
-        public ActionResult Index() {
-            return View();
-        }
+namespace MVC_Agendamento_Web.Controllers
+{
+	public class ServiceController : Controller
+	{
+		private readonly IServiceService _service;
 
-        public ActionResult Details(int id) {
-            return View();
-        }
+		public ServiceController(IServiceService service)
+		{
+			_service = service;
+		}
+		public ActionResult Index()
+		{
+			return View(_service.FindAll());
+		}
 
-        public ActionResult Create() {
-            return View();
-        }
+		public ActionResult Details(int id)
+		{
+			return View(_service.FindById(id));
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            }
-            catch {
-                return View();
-            }
-        }
+		public ActionResult Create()
+		{
+			return View();
+		}
 
-        public ActionResult Edit(int id) {
-            return View();
-        }
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create([Bind("scheduleId, patientId, doctorId, statusId, serviceNumber, evaluation, medicalRecord")] ServiceDTO service)
+		{
+			if (ModelState.IsValid)
+			{
+				if (await _service.Save(service) > 0)
+				{
+					return RedirectToAction(nameof(Index));
+				}
+			}
+			return View(service);
+			
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            }
-            catch {
-                return View();
-            }
-        }
+		public async Task<IActionResult> Edit(int id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var service = await _service.FindById(id);
+			return View(service);
+		}
 
-        public ActionResult Delete(int id) {
-            return View();
-        }
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(int? id, [Bind("scheduleId, patientId, doctorId, statusId, serviceNumber, evaluation, medicalRecord")] ServiceDTO service)
+		{
+			if (ModelState.IsValid)
+			{
+				if (await _service.Save(service) > 0)
+				{
+					return RedirectToAction(nameof(Index));
+				}
+			}
+			return View(service);
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            }
-            catch {
-                return View();
-            }
-
-        }
-
-    }
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Delete(int id)
+		{
+			var service = await _service.Delete(id);
+			return View(service);
+		}
+	}
 }

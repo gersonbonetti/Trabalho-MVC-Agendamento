@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using MVC_Agendamento_Application_Service.SQLServerServices;
 using MVC_Agendamento_Domain.Contract.Repositories;
+using MVC_Agendamento_Domain.Contracts.Repository;
 using MVC_Agendamento_Domain.Contracts.Services;
 using MVC_Agendamento_Infra_Data.Context;
 using MVC_Agendamento_Infra_Data.Repositories;
+using MVC_Agendamento_Infra_Data.Repositoriess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,23 +20,24 @@ builder.Services.AddDbContext<SQLServerContext>
 // # Repositories
 
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
-//builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-//builder.Services.AddScoped<IPatientRepository, PatientRepository>();
-//builder.Services.AddScoped<IPersonRepository, PersonRepository>();
-//builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
-//builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 //builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 
 // # Services
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
-//builder.Services.AddScoped<IServiceService, ServiceService>();
-//builder.Services.AddScoped<IConditionService, ConditionService>();
-//builder.Services.AddScoped<IDoctorService, DoctorService>();
-//builder.Services.AddScoped<IPatientService, PatientService>();
-//builder.Services.AddScoped<IPersonService, PersonService>();
-//builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IStatusService, StatusService>();
+builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 //builder.Services.AddScoped<IUserService, UserService>();
 
 

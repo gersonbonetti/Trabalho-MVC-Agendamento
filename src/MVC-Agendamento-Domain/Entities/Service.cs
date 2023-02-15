@@ -15,7 +15,7 @@ namespace MVC_Agendamento_Domain.Entities {
         public int PatientId { get; set; }
         public int DoctorId { get; set; }
         public int StatusId { get; set; }
-        public int ServiceNumbe { get; set; }
+        public int ServiceNumber { get; set; }
         public DateTime Date { get; set; }
         public string? Evaluation { get; set; }
 
