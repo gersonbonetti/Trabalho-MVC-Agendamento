@@ -4,18 +4,24 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MVC_Agendamento_Domain.Contracts.Services;
 using MVC_Agendamento_Domain.DTO;
 
+using MVC_Agendamento_Domain.Entities;
+
 namespace MVC_Agendamento_Web.Controllers
 {
 	public class ScheduleController : Controller
 	{
-        private readonly IScheduleService _service;
 
-        public ScheduleController(IScheduleService service) {
-            _service = service;
-        }
-        public ActionResult Index() {
-            return View(_service.FindAll());
-        }
+		private readonly IScheduleService _service;
+
+		public ScheduleController(IScheduleService service)
+		{
+			_service = service;
+		}
+		public IActionResult Index()
+		{
+			return View(_service.FindAll());
+		}
+
 
         public ActionResult Details(int id)
 		{
@@ -24,16 +30,22 @@ namespace MVC_Agendamento_Web.Controllers
 
 		public ActionResult Create()
 		{
-			return View();
+           
+            return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([Bind("id, patientId, doctorId, statusId, date, confirmedQuery")] ScheduleDTO schedule)
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+				{
+                    if (await _service.Save(schedule) > 0)
+                        return RedirectToAction(nameof(Index));
+                }
+                return RedirectToAction(nameof(Index));
 			}
 			catch
 			{
@@ -41,38 +53,75 @@ namespace MVC_Agendamento_Web.Controllers
 			}
 		}
 
-		public ActionResult Edit(int id)
+		public async Task<ActionResult> Edit(int id)
 		{
-			return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var schedule = await _service.FindById(id);
+            return View(schedule);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public async Task<IActionResult> Edit(int id, [Bind("id, patientId, doctorId, statusId, date, confirmedQuery")] ScheduleDTO schedule)
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
-			}
+
+                if (!(id == schedule.id))
+                {
+                    return NotFound();
+                }
+                if (ModelState.IsValid)
+                {
+                    if (await _service.Save(schedule) > 0)
+                        return RedirectToAction(nameof(Index));
+                }
+                return View(schedule);
+            }
 			catch
 			{
 				return View();
 			}
 		}
 
-		public ActionResult Delete(int id)
+		public async Task<IActionResult> Delete(int id)
 		{
-			return View();
-		}
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var schedule = await _service.FindById(id);
+
+            if (schedule == null)
+            {
+                return NotFound();
+            }
+
+            return View(schedule);
+        }
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
-			}
+                if (id <= 0)
+                {
+                    return Problem("Entity set 'Schedule'  is null.");
+                }
+                var schedule = await _service.FindById(id);
+                if (schedule != null)
+                {
+                    await _service.Delete(schedule.id);
+                }
+                return RedirectToAction(nameof(Index));
+            }
 			catch
 			{
 				return View();
