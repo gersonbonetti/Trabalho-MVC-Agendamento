@@ -5,10 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Agendamento_Domain.Utils.Enums
-{
-    public enum EnumStatus
-    {
+namespace MVC_Agendamento_Domain.Utils.Enums {
+    public enum EnumStatus {
         [Description("Em atendimento")]
         EmAtendimento = 1,
         [Description("Aguardando confirmação")]

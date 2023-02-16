@@ -1,5 +1,4 @@
 ﻿using MVC_Agendamento_Domain.DTO;
-using MVC_Agendamento_Domain.Entities;
 using MVC_Agendamento_Domain.IRepositories;
 using MVC_Agendamento_Domain.IServices;
 using MVC_Agendamento_Infra_Data.Repositories;
@@ -8,12 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MVC_Agendamento_Application_Service.SQLServerServices.ServiceService;
 
 namespace MVC_Agendamento_Application_Service.SQLServerServices {
-    public class ScheduleService : IScheduleService {
-        private readonly IScheduleRepository _repository;
+    public class ServiceService : IServiceService {
+        private readonly IServiceRepository _repository;
 
-        public ScheduleService(IScheduleRepository repository) {
+        public ServiceService(IServiceRepository repository) {
             _repository = repository;
         }
 
@@ -22,24 +22,18 @@ namespace MVC_Agendamento_Application_Service.SQLServerServices {
             return await _repository.Delete(entity);
         }
 
-        public List<ScheduleDTO> FindAll() {
+        public List<ServiceDTO> FindAll() {
             return _repository.FindAll()
-                              .Select(c => new ScheduleDTO() {
-                                  id = c.Id,
-                                  patientId = c.PatientId,
-                                  doctorId = c.DoctorId,
-                                  date = c.Date,
-                                  confirmedQuery = c.ConfirmedQuery,
-                                  status = c.Status,
+                              .Select(c => new ServiceDTO() {
+                                  
                               }).ToList();
         }
-
-        public async Task<ScheduleDTO> FindById(int id) {
-            var dto = new ScheduleDTO();
+        public async Task<ServiceDTO> FindById(int id) {
+            var dto = new ServiceDTO();
             return dto.mapToDTO(await _repository.FindById(id));
         }
 
-        public Task<int> Save(ScheduleDTO dto) {
+        public Task<int> Save(ServiceDTO dto) {
             if (dto.id > 0) {
                 return _repository.Update(dto.mapToEntity());
             }

@@ -5,10 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Agendamento_Domain.Entities
-{
-    public class Schedule
-    {
+namespace MVC_Agendamento_Domain.Entities {
+    public class Schedule {
         public int Id { get; set; }
         public int PatientId { get; set; }
         public int DoctorId { get; set; }

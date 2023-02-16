@@ -3,10 +3,11 @@ using MVC_Agendamento_Domain.IRepositories;
 using MVC_Agendamento_Infra_Data.Context;
 
 namespace MVC_Agendamento_Infra_Data.Repositories {
-    public class ScheduleRepository : BaseRepository<Schedule>, IScheduleRepository {
+    public class ServiceRepository : BaseRepository<Service>, IServiceRepository {
+
         private readonly SQLServerContext _context;
 
-        public ScheduleRepository(SQLServerContext context) : base(context) {
+        public ServiceRepository(SQLServerContext context) : base(context) {
             _context = context;
         }
     }

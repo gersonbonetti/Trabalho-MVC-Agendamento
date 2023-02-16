@@ -6,6 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Domain.IRepositories {
-    public interface IScheduleRepository : IBaseRepository<Schedule> {
+    public interface IServiceRepository : IBaseRepository<Service> {
     }
 }

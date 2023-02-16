@@ -6,6 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MVC_Agendamento_Domain.IServices {
-    public interface IScheduleService : IBaseService<ScheduleDTO> {
+    public interface IServiceService : IBaseService<ServiceDTO> {
     }
 }
